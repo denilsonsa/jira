@@ -100,8 +100,7 @@ class Resource:
     """Models a URL-addressable resource in the Jira REST API.
 
     All Resource objects provide the following:
-    ``find()`` -- get a resource from the server and load it into the current object
-    (though clients should use the methods in the JIRA class instead of this method directly)
+    ``find()`` -- get a resource from the server and load it into the current object (though clients should use the methods in the JIRA class instead of this method directly)
     ``update()`` -- changes the value of this resource on the server and returns a new resource object for it
     ``delete()`` -- deletes this resource from the server
     ``self`` -- the URL of this resource on the server
@@ -137,8 +136,8 @@ class Resource:
         "closed",
     )
 
-    # A list of properties that should uniquely identify a Resource object Each of
-    # these properties should be hashable, usually strings
+    # A list of properties that should uniquely identify a Resource object.
+    # Each of these properties should be hashable, usually strings
     _HASH_IDS = (
         "self",
         "type",
@@ -641,10 +640,10 @@ class Issue(Resource):
     ):
         """Update this issue on the server.
 
-        Each keyword argument (other than the predefined ones) is treated as a field name and the argument's value is treated as the
-        intended value for that field -- if the fields argument is used, all other keyword arguments will be ignored.
+        Each keyword argument (other than the predefined ones) is treated as a field name and the argument's value is treated as
+        the intended value for that field -- if the fields argument is used, all other keyword arguments will be ignored.
 
-        Jira projects may contain many different issue types. Some issue screens have different requirements for fields in an issue.
+        Jira projects may contain many issue types. Some issue screens have different requirements for fields in an issue.
         This information is available through the :py:meth:`.JIRA.editmeta` method.
         Further examples are available here: https://developer.atlassian.com/display/JIRADEV/JIRA+REST+API+Example+-+Edit+issues
 
@@ -753,7 +752,8 @@ class Comment(Resource):
         self.raw: Dict[str, Any] = cast(Dict[str, Any], self.raw)
 
     def update(  # type: ignore[override]
-        # The above ignore is added because we've added new parameters and order of parameters is different.
+        # The above ignore is added because we've added new parameters and order of
+        # parameters is different.
         # Will need to be solved in a major version bump.
         self,
         fields: Optional[Dict[str, Any]] = None,
@@ -1106,9 +1106,7 @@ class Role(Resource):
         users: Union[str, List, Tuple] = None,
         groups: Union[str, List, Tuple] = None,
     ):
-        """Add the specified users or groups to this project role.
-
-        One of ``users`` or ``groups`` must be specified.
+        """Add the specified users or groups to this project role. One of ``users`` or ``groups`` must be specified.
 
         Args:
             users (Optional[Union[str,List,Tuple]]): a user or users to add to the role
@@ -1238,8 +1236,7 @@ class Version(Resource):
         """
         Delete this project version from the server.
 
-        If neither of the arguments are specified, the version is removed from all
-        issues it is attached to.
+        If neither of the arguments are specified, the version is removed from all issues it is attached to.
 
         Args:
             moveFixIssuesTo: in issues for which this version is a fix version, add this version to the fix version list
